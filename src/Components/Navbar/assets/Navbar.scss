@@ -1,0 +1,191 @@
+@use "../../../App.scss" as *;
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $bg-color-secondary;
+  position: fixed;
+  top: 32px;
+  left: 32px;
+
+  height: calc((100vh - 64px - 67px));
+  width: calc(96px - 64px);
+  padding: 35px 32px 32px 32px;
+
+  border-radius: 20px;
+
+  gap: 75px;
+
+  @include tablet-only {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 24px;
+    // margin: 24px;
+    left: 24px;
+    top: 24px;
+    width: calc(100% - 48px - 48px);
+    height: calc(72px - 48px);
+  }
+
+  @include mobile-only() {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    margin: 0;
+    width: calc(100% - 32px);
+    height: calc(56px - 32px);
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    gap: 0;
+  }
+
+  //   .icon {
+  //     position: absolute;
+  //     left: 0;
+  //     top: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //   }
+
+  &__header {
+    .logo {
+      position: relative;
+      height: 25px;
+      width: 32px;
+
+      @include mobile-only() {
+        width: 25px;
+        height: 20px;
+      }
+
+      .icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__main {
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      list-style-type: none;
+      padding: 0;
+      gap: 40px;
+
+      @include tablet-only() {
+        flex-direction: row;
+        gap: 32px;
+      }
+
+      @include mobile-only() {
+        gap: 24px;
+      }
+
+      &__item {
+        &__link {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          // content: " hello";
+          // width: 50px;
+          // // background-color: red;
+          // height: 50px;
+          //   background-repeat: no-repeat;
+          //   background-size: contain;
+          //   background-clip: $color-primary;
+
+          // height: 20px;
+          // width: 20px;
+
+          // @include mobile-only() {
+          //   height: 16px;
+          //   width: 16px;
+          // }
+
+          &:hover {
+            cursor: pointer;
+            .icon {
+              fill: $color-primary;
+            }
+          }
+
+          //   &--navhome {
+          //     background-image: url("./assets/images/icon-nav-home.svg");
+          //   }
+
+          //   &--navmovies {
+          //     background-image: url("./assets/images/icon-nav-movies.svg");
+          //   }
+
+          //   &--navseries {
+          //     background-image: url("./assets/images/icon-nav-tv-series.svg");
+          //   }
+
+          //   &--navbookmark {
+          //     background-image: url("./assets/images/icon-nav-bookmark.svg");
+          //   }
+
+          .icon {
+            // position: absolute;
+            // left: 0;
+            // top: 0;
+            // width: 100%;
+            // height: 100%;
+            // width: 50px;
+            // background-color: red;
+            // height: 50px;
+            height: 20px;
+            width: 20px;
+
+            @include mobile-only() {
+              height: 16px;
+              width: 16px;
+            }
+
+            fill: $txt-color-secondary;
+            object-fit: scale-down;
+          }
+
+          &.active {
+            .icon {
+              fill: $txt-color-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__footer {
+    margin-top: auto;
+    .avatar {
+      position: relative;
+      height: 40px;
+      width: 40px;
+      border: 1px solid #fff;
+      border-radius: 100%;
+
+      @include mobile-only() {
+        height: 24px;
+        width: 24px;
+      }
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

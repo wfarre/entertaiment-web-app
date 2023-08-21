@@ -1,0 +1,142 @@
+$color-primary: #fc4747;
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap");
+
+$color-error: #fc4747;
+$bg-color-primary: #10141e;
+$bg-color-secondary: #161d2f;
+$txt-color-primary: #fff;
+$txt-color-secondary: #5a698f;
+
+$heading-L: 32px;
+$heading-M: 24px;
+$heading-S: 24px;
+$heading-XS: 18px;
+$font-primary: 15px;
+$font-primary-mobile: 13px;
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+@mixin heading-L() {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+@mixin heading-M() {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+@mixin heading-S() {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+@mixin heading-XS() {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+@mixin mobile-only {
+  @media all and (max-width: 375px) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media all and (max-width: 768px) {
+    @content;
+  }
+}
+
+html {
+  font-size: $font-primary;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  font-weight: 300;
+  background-color: $bg-color-primary;
+  color: $txt-color-primary;
+}
+
+.main {
+  margin-left: 164px;
+  margin-top: 130px;
+}
+
+.section {
+  //   overflow: hidden;
+  &__header {
+    margin-bottom: 25px;
+    &__title {
+      @include heading-L();
+    }
+  }
+
+  &--recommendation {
+    margin-top: 40px;
+
+    .card {
+      width: 280px;
+      height: 226px;
+
+      &__main {
+        height: 174px;
+        .thumbnail {
+        }
+      }
+
+      &__footer {
+        bottom: 0;
+        left: 0;
+        .metadata {
+          margin-top: 8px;
+        }
+
+        .title {
+          @include heading-XS();
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 40px;
+      row-gap: 32px;
+      overflow: auto;
+      height: auto;
+      margin-bottom: 52px;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  //   overflow: hidden;
+  overflow-x: scroll;
+}
+
+.viewport {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  //   overflow-x: scroll;
+  //   overflow-y: hidden;
+  //   flex-wrap: nowrap;
+  //   scroll-behavior: smooth;
+  //   scroll-snap-type: x mandatory;
+}

@@ -1,0 +1,62 @@
+@use "../../../App.scss" as *;
+
+.header {
+  position: fixed;
+  left: 164px;
+  top: 64px;
+  width: calc(100% - 164px - 36px);
+  //   margin-right: 36px;
+
+  @include tablet-only() {
+    top: 128px;
+    left: 24px;
+    width: calc(100% - 24px - 24px);
+  }
+
+  @include mobile-only() {
+    top: 82px;
+    left: 16px;
+    width: calc(100% - 16px - 16px);
+  }
+
+  .search-bar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+    align-items: center;
+
+    .search-icon {
+      background-image: url("./images/icon-search.svg");
+      background-size: contain;
+      width: 32px;
+      height: 32px;
+    }
+
+    @include mobile-only() {
+      gap: 16px;
+
+      .search-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__input {
+      width: 100%;
+      height: calc(32px - 15px);
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: none;
+      background-color: transparent;
+      @include heading-M();
+
+      &:focus {
+        // background-color: red;
+        border-bottom: 1px solid $txt-color-secondary;
+        outline: none;
+        color: #fff;
+        caret-color: $color-primary;
+      }
+    }
+  }
+}
