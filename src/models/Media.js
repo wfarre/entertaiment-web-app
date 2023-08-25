@@ -21,8 +21,8 @@ class Media {
     return this._thumbnail.trending.large;
   }
 
-  get thumbnailReggular() {
-    return this._thumbnail.regular;
+  get thumbnailRegular() {
+    return this._thumbnail.regular.large;
   }
 
   get year() {

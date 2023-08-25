@@ -29,6 +29,8 @@ const Card = ({
 
       <div className="card__main">
         <div className="thumbnail-wrapper">
+          <img className="thumbnail" src={thumbnailRegular} alt=""></img>
+
           <img className="thumbnail" src={thumbnailTrending} alt=""></img>
         </div>
 

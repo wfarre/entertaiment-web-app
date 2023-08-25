@@ -1,6 +1,36 @@
 import Card from "../Components/Card/Card";
+import { useState, useEffect } from "react";
+import MediaFactory from "../factories/MediaFactory";
 
 function Series() {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch("./assets/data/data.json")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setIsLoading(false);
+        const filteredData = data.filter(
+          (data) => data.category === "TV Series"
+        );
+        console.log(filteredData);
+
+        const medias = filteredData.map(
+          (media) => new MediaFactory(media, "json")
+        );
+        setData(medias);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err);
+      });
+  }, []);
+
   return (
     <div className="Series">
       {/* <Navbar />
@@ -13,12 +43,18 @@ function Series() {
 
         <div className="section__main">
           <div className="container">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {data.map((media) => {
+              return (
+                <Card
+                  title={media.title}
+                  category={media.category}
+                  year={media.year}
+                  rating={media.rating}
+                  isBookmarked={media.isBookmarked}
+                  thumbnailTrending={media.thumbnailRegular}
+                />
+              );
+            })}
           </div>
         </div>
 

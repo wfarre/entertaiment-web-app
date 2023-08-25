@@ -73,12 +73,18 @@ function App() {
 
         <div className="section__main">
           <div className="container">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {data.map((media) => {
+              return (
+                <Card
+                  title={media.title}
+                  category={media.category}
+                  year={media.year}
+                  rating={media.rating}
+                  isBookmarked={media.isBookmarked}
+                  thumbnailRegular={media.thumbnailRegular}
+                />
+              );
+            })}
           </div>
         </div>
 
