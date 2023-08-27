@@ -16,7 +16,7 @@ function Movies() {
       .then((data) => {
         setIsLoading(false);
         const filteredData = data.filter((data) => data.category === "Movie");
-        console.log(filteredData);
+        // console.log(filteredData);
 
         const medias = filteredData.map(
           (media) => new MediaFactory(media, "json")
@@ -49,7 +49,7 @@ function Movies() {
                   year={media.year}
                   rating={media.rating}
                   isBookmarked={media.isBookmarked}
-                  thumbnailTrending={media.thumbnailRegular}
+                  thumbnailTrending={media.thumbnailRegular.small}
                 />
               );
             })}

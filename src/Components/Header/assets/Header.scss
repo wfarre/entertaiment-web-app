@@ -5,6 +5,8 @@
   left: 164px;
   top: 64px;
   width: calc(100% - 164px - 36px);
+  z-index: 500;
+  background-color: $bg-color-primary;
   //   margin-right: 36px;
 
   @include tablet-only() {
@@ -14,7 +16,7 @@
   }
 
   @include mobile-only() {
-    top: 82px;
+    top: 80px;
     left: 16px;
     width: calc(100% - 16px - 16px);
   }
@@ -50,12 +52,22 @@
       background-color: transparent;
       @include heading-M();
 
+      @include mobile-only {
+        font-size: 16px;
+        padding: 0;
+        height: 24px;
+      }
+
       &:focus {
         // background-color: red;
         border-bottom: 1px solid $txt-color-secondary;
         outline: none;
         color: #fff;
         caret-color: $color-primary;
+
+        @include tablet-only {
+          border: none;
+        }
       }
     }
   }

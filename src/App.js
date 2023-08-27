@@ -19,7 +19,7 @@ function App() {
       })
       .then((data) => {
         setIsLoading(false);
-        console.log(data);
+        // console.log(data);
         const medias = data.map((media) => new MediaFactory(media, "json"));
         setData(medias);
       })

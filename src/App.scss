@@ -41,6 +41,11 @@ p {
   font-weight: 500;
 }
 
+@mixin body-S {
+  font-size: 13px;
+  font-weight: 300;
+}
+
 @mixin mobile-only {
   @media all and (max-width: 375px) {
     @content;
@@ -69,26 +74,100 @@ body {
 .main {
   margin-left: 164px;
   margin-top: 130px;
+
+  @include tablet-only() {
+    margin-top: 193px;
+    margin-left: 25px;
+  }
+
+  @include mobile-only() {
+    margin-top: 128px;
+    margin-left: 16px;
+  }
 }
 
 .section {
   //   overflow: hidden;
   &__header {
     margin-bottom: 25px;
+
+    @include mobile-only() {
+      margin-bottom: 16px;
+    }
     &__title {
       @include heading-L();
+
+      @include mobile-only() {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &--trending {
+    @include mobile-only() {
+      .card {
+        &__footer {
+          width: calc(100% - 32px);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .about {
+            .optional-dot,
+            .PG {
+              display: none;
+            }
+          }
+
+          .rate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include body-S();
+            width: 34px;
+            height: 21px;
+            background-color: hsl(0, 0%, 100%, 0.5);
+            border-radius: 10px;
+          }
+        }
+      }
     }
   }
 
   &--recommendation {
     margin-top: 40px;
 
+    @include mobile-only() {
+      margin-top: 24px;
+    }
+
     .card {
       width: 280px;
       height: 226px;
 
+      @include tablet-only() {
+        width: 220px;
+        height: 192px;
+      }
+
+      @include mobile-only() {
+        width: 164px;
+        height: 154px;
+      }
+
+      // @include mobile-only(){
+      //   width: ;
+      // }
+
       &__main {
         height: 174px;
+        @include tablet-only() {
+          height: 140px;
+        }
+
+        @include mobile-only() {
+          height: 110px;
+        }
         .thumbnail {
         }
       }
@@ -98,11 +177,19 @@ body {
         left: 0;
         .metadata {
           margin-top: 8px;
+          @include mobile-only() {
+            font-size: 11px;
+            gap: 6px;
+          }
         }
 
         .title {
           @include heading-XS();
           margin-top: 5px;
+
+          @include mobile-only() {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -115,6 +202,16 @@ body {
       overflow: auto;
       height: auto;
       margin-bottom: 52px;
+
+      @include tablet-only() {
+        column-gap: 29px;
+        row-gap: 24px;
+      }
+
+      @include mobile-only() {
+        column-gap: 15px;
+        row-gap: 16px;
+      }
     }
   }
 }
@@ -125,6 +222,10 @@ body {
   height: 230px;
   //   overflow: hidden;
   overflow-x: scroll;
+
+  @include mobile-only() {
+    height: 140px;
+  }
 }
 
 .viewport {

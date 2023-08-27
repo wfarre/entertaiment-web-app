@@ -6,10 +6,20 @@
   height: 230px;
   z-index: 0;
 
+  @include mobile-only {
+    width: 240px;
+    height: 140px;
+  }
+
   &__header {
     position: absolute;
     right: 24px;
     top: 16px;
+
+    @include mobile-only {
+      right: 8px;
+      top: 8px;
+    }
     .btn {
       position: relative;
       height: 32px;
@@ -135,6 +145,10 @@
     left: 24px;
     bottom: 24px;
     z-index: 10;
+
+    .rate {
+      display: none;
+    }
     .metadata {
       z-index: 100;
       display: flex;
@@ -151,6 +165,17 @@
     .title {
       @include heading-S();
       margin-top: 3px;
+    }
+
+    @include mobile-only {
+      left: 16px;
+      bottom: 16px;
+
+      font-size: 12px;
+
+      .title {
+        font-size: 15px;
+      }
     }
   }
 }

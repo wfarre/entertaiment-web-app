@@ -17,7 +17,7 @@ const Card = ({
   rating,
   category,
 }) => {
-  console.log(thumbnailTrending);
+  console.log(thumbnailRegular);
   return (
     <div className="card">
       <div className="card__header">
@@ -29,9 +29,26 @@ const Card = ({
 
       <div className="card__main">
         <div className="thumbnail-wrapper">
-          <img className="thumbnail" src={thumbnailRegular} alt=""></img>
+          {thumbnailRegular ? (
+            <picture>
+              <source
+                media="(max-width:375px)"
+                srcSet={thumbnailRegular.small}
+              />
+              <source
+                media="(max-width:375px)"
+                srcSet={thumbnailRegular.medium}
+              />
 
-          <img className="thumbnail" src={thumbnailTrending} alt=""></img>
+              <img
+                className="thumbnail"
+                src={thumbnailRegular.large}
+                alt=""
+              ></img>
+            </picture>
+          ) : (
+            <img className="thumbnail" src={thumbnailTrending} alt=""></img>
+          )}
         </div>
 
         <button className="btn btn--play">
@@ -41,18 +58,24 @@ const Card = ({
       </div>
 
       <div className="card__footer">
-        <div className="metadata">
-          <p className="date">{year}</p>
-          <span>・</span>
-          <p className="type">
-            <IconCatMovies />
-            {category}
-          </p>
-          <span>・</span>
-          <p className="PG">{rating}</p>
+        <div className="about">
+          <div className="metadata">
+            <p className="date">{year}</p>
+            <span>・</span>
+            <p className="type">
+              <IconCatMovies />
+              {category}
+            </p>
+            <span className="optional-dot">・</span>
+            <p className="PG">{rating}</p>
+          </div>
+
+          <h3 className="title">{title}</h3>
         </div>
 
-        <h3 className="title">{title}</h3>
+        <div className="rate">
+          <p className="PG">{rating}</p>
+        </div>
       </div>
     </div>
   );

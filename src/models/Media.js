@@ -22,7 +22,7 @@ class Media {
   }
 
   get thumbnailRegular() {
-    return this._thumbnail.regular.large;
+    return this._thumbnail.regular;
   }
 
   get year() {
