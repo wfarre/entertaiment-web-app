@@ -1,6 +1,9 @@
 import Card from "../Components/Card/Card";
 import { useEffect, useState } from "react";
 import MediaFactory from "../factories/MediaFactory";
+import Navbar from "../Components/Navbar/Navbar";
+
+import Header from "../Components/Header/Header";
 
 function Movies() {
   const [data, setData] = useState([]);
@@ -31,33 +34,34 @@ function Movies() {
 
   return (
     <div className="Movies">
-      {/* <Navbar />
-      <Header /> */}
+      <Navbar />
+      <Header />
+      <main className="main">
+        <section className="section section--recommendation">
+          <header className="section__header">
+            <h2 className="section__header__title">Movies</h2>
+          </header>
 
-      <section className="section section--recommendation">
-        <header className="section__header">
-          <h2 className="section__header__title">Movies</h2>
-        </header>
-
-        <div className="section__main">
-          <div className="container">
-            {data.map((media) => {
-              return (
-                <Card
-                  title={media.title}
-                  category={media.category}
-                  year={media.year}
-                  rating={media.rating}
-                  isBookmarked={media.isBookmarked}
-                  thumbnailTrending={media.thumbnailRegular.small}
-                />
-              );
-            })}
+          <div className="section__main">
+            <div className="container">
+              {data.map((media) => {
+                return (
+                  <Card
+                    title={media.title}
+                    category={media.category}
+                    year={media.year}
+                    rating={media.rating}
+                    isBookmarked={media.isBookmarked}
+                    thumbnailTrending={media.thumbnailRegular.small}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
 
-        <footer className="section__footer"></footer>
-      </section>
+          <footer className="section__footer"></footer>
+        </section>
+      </main>
     </div>
   );
 }

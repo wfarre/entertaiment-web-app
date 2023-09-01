@@ -33,63 +33,68 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Navbar />
-      <Header /> */}
+      <Navbar />
+      <Header />
 
-      <section className="section section--trending" id="trending">
-        <header className="section__header">
-          <h2 className="section__header__title">Trending</h2>
-        </header>
+      <main className="main">
+        <section className="section section--trending" id="trending">
+          <header className="section__header">
+            <h2 className="section__header__title">Trending</h2>
+          </header>
 
-        <div className="section__main">
-          <div className="container">
-            <div className="viewport">
+          <div className="section__main">
+            <div className="container">
+              <div className="viewport">
+                {data.map((media) => {
+                  if (media.isTrending) {
+                    return (
+                      <Card
+                        title={media.title}
+                        category={media.category}
+                        year={media.year}
+                        rating={media.rating}
+                        isBookmarked={media.isBookmarked}
+                        thumbnailTrending={media.thumbnailTrending}
+                      />
+                    );
+                  }
+                  return false;
+                })}
+              </div>
+            </div>
+          </div>
+
+          <footer className="section__footer"></footer>
+        </section>
+
+        <section
+          className="section section--recommendation"
+          id="recommendation"
+        >
+          <header className="section__header">
+            <h2 className="section__header__title">Recommended for you</h2>
+          </header>
+
+          <div className="section__main">
+            <div className="container">
               {data.map((media) => {
-                if (media.isTrending) {
-                  return (
-                    <Card
-                      title={media.title}
-                      category={media.category}
-                      year={media.year}
-                      rating={media.rating}
-                      isBookmarked={media.isBookmarked}
-                      thumbnailTrending={media.thumbnailTrending}
-                    />
-                  );
-                }
-                return false;
+                return (
+                  <Card
+                    title={media.title}
+                    category={media.category}
+                    year={media.year}
+                    rating={media.rating}
+                    isBookmarked={media.isBookmarked}
+                    thumbnailRegular={media.thumbnailRegular}
+                  />
+                );
               })}
             </div>
           </div>
-        </div>
 
-        <footer className="section__footer"></footer>
-      </section>
-
-      <section className="section section--recommendation" id="recommendation">
-        <header className="section__header">
-          <h2 className="section__header__title">Recommended for you</h2>
-        </header>
-
-        <div className="section__main">
-          <div className="container">
-            {data.map((media) => {
-              return (
-                <Card
-                  title={media.title}
-                  category={media.category}
-                  year={media.year}
-                  rating={media.rating}
-                  isBookmarked={media.isBookmarked}
-                  thumbnailRegular={media.thumbnailRegular}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        <footer className="section__footer"></footer>
-      </section>
+          <footer className="section__footer"></footer>
+        </section>
+      </main>
     </div>
   );
 }

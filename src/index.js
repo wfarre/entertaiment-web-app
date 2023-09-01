@@ -15,22 +15,24 @@ import Header from "./Components/Header/Header";
 import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 import Bookmarked from "./pages/Bookmarked";
+import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
 
   <BrowserRouter>
-    <Navbar />
-    <Header />
-    <main className="main">
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/series" element={<Series />} />
-        <Route path="/bookmarked" element={<Bookmarked />} />
-      </Routes>
-    </main>
+    {/* <Navbar />
+    <Header /> */}
+    {/* <main className="main"> */}
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<App />} />
+      <Route path="/movies" element={<Movies />} />
+      <Route path="/series" element={<Series />} />
+      <Route path="/bookmarked" element={<Bookmarked />} />
+    </Routes>
+    {/* </main> */}
   </BrowserRouter>
 
   // {/* </React.StrictMode> */}
