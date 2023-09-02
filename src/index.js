@@ -16,6 +16,7 @@ import Movies from "./pages/Movies";
 import Series from "./pages/Series";
 import Bookmarked from "./pages/Bookmarked";
 import Login from "./pages/Login";
+import { Signup } from "./pages/Signup";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,6 +28,7 @@ root.render(
     {/* <main className="main"> */}
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<App />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/series" element={<Series />} />

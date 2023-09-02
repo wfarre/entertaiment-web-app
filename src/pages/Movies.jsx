@@ -22,7 +22,7 @@ function Movies() {
         // console.log(filteredData);
 
         const medias = filteredData.map(
-          (media) => new MediaFactory(media, "json")
+          (media) => new MediaFactory(media, "json"),
         );
         setData(medias);
       })
@@ -44,15 +44,17 @@ function Movies() {
 
           <div className="section__main">
             <div className="container">
-              {data.map((media) => {
+              {data.map((media, key = 0) => {
+                key++;
                 return (
                   <Card
+                    key={media.title + key}
                     title={media.title}
                     category={media.category}
                     year={media.year}
                     rating={media.rating}
                     isBookmarked={media.isBookmarked}
-                    thumbnailTrending={media.thumbnailRegular.small}
+                    thumbnailRegular={media.thumbnailRegular}
                   />
                 );
               })}

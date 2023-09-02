@@ -240,7 +240,8 @@ body {
   margin: 0;
 }
 
-.Login > .header {
+.Login > .header,
+.Signup > .header {
   position: relative;
   display: inline-flex;
   justify-content: center;
@@ -261,7 +262,8 @@ body {
   }
 }
 
-.section--login {
+.section--login,
+.section--signup {
   background-color: $bg-color-secondary;
   margin: 0 auto;
   width: calc(400px - 2 * 32px);
@@ -286,24 +288,46 @@ body {
       width: 100%;
       margin-bottom: 24px;
       .form {
-        .input {
-          width: calc(100% - 16px);
-          background-color: transparent;
-          border: none;
-          border-bottom: 1px solid $txt-color-secondary;
-          padding-bottom: 17px;
-          padding-left: 16px;
-          @include body-M();
-          margin-bottom: 24px;
-          caret-color: $color-primary;
-          color: #fff;
+        &__element {
+          position: relative;
 
-          &:focus {
-            outline: none;
+          .error-msg {
+            color: $color-error;
+            @include body-S();
+            position: absolute;
+            top: 50%;
+            right: 17px;
+            transform: translateY(calc(-50% - 17px));
+            // visibility: hidden;
           }
+          .input {
+            position: relative;
+            width: calc(100% - 16px);
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid $txt-color-secondary;
+            padding-bottom: 17px;
+            padding-left: 16px;
+            @include body-M();
+            margin-bottom: 24px;
+            caret-color: $color-primary;
+            color: #fff;
 
-          &:last-child {
-            margin-bottom: 40px;
+            &:focus {
+              outline: none;
+            }
+
+            &:last-child {
+              margin-bottom: 40px;
+            }
+          }
+        }
+
+        .error {
+          .input {
+            position: relative;
+            // background-color: aqua;
+            border-bottom-color: $color-error;
           }
         }
 
@@ -315,6 +339,14 @@ body {
           height: 48px;
           border-radius: 6px;
           border: none;
+          cursor: pointer;
+
+          &:hover {
+            cursor: pointer;
+            transition: all 300ms;
+            background-color: #fff;
+            color: $bg-color-secondary;
+          }
         }
       }
     }
@@ -330,3 +362,16 @@ body {
     }
   }
 }
+
+// ::before{
+//   content: ' hellloooooo';
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   // color: red;
+//   // font-size: 40px;
+//   height: 40px;
+//   width: 50px;
+//   background-color: #fc4747;
+//   z-index: 100;
+// }

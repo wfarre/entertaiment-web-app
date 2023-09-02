@@ -19,12 +19,12 @@ function Series() {
       .then((data) => {
         setIsLoading(false);
         const filteredData = data.filter(
-          (data) => data.category === "TV Series"
+          (data) => data.category === "TV Series",
         );
         console.log(filteredData);
 
         const medias = filteredData.map(
-          (media) => new MediaFactory(media, "json")
+          (media) => new MediaFactory(media, "json"),
         );
         setData(medias);
       })
@@ -41,20 +41,22 @@ function Series() {
       <main className="main">
         <section className="section section--recommendation">
           <header className="section__header">
-            <h2 className="section__header__title">Movies</h2>
+            <h2 className="section__header__title">Series</h2>
           </header>
 
           <div className="section__main">
             <div className="container">
-              {data.map((media) => {
+              {data.map((media, key = 0) => {
+                key++;
                 return (
                   <Card
+                    key={media.title + key}
                     title={media.title}
                     category={media.category}
                     year={media.year}
                     rating={media.rating}
                     isBookmarked={media.isBookmarked}
-                    thumbnailTrending={media.thumbnailRegular}
+                    thumbnailRegular={media.thumbnailRegular}
                   />
                 );
               })}

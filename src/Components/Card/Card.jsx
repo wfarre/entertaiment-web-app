@@ -22,8 +22,11 @@ const Card = ({
     <div className="card">
       <div className="card__header">
         <button className="btn btn--bookmark">
-          <BookmarkEmpty className="icon-bookmark icon-bookmark--empty" />
-          {/* <BookmarkFull className="icon-bookmark icon-bookmark--full" /> */}
+          {!isBookmarked ? (
+            <BookmarkEmpty className="icon-bookmark icon-bookmark--empty" />
+          ) : (
+            <BookmarkFull className="icon-bookmark icon-bookmark--full" />
+          )}
         </button>
       </div>
 

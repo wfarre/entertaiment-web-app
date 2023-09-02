@@ -45,10 +45,12 @@ function App() {
           <div className="section__main">
             <div className="container">
               <div className="viewport">
-                {data.map((media) => {
+                {data.map((media, key = 0) => {
                   if (media.isTrending) {
+                    key++;
                     return (
                       <Card
+                        key={media.title + key}
                         title={media.title}
                         category={media.category}
                         year={media.year}

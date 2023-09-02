@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../assets/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
 import "../App.scss";
 
-const Login = () => {
+export const Signup = () => {
+  const navigate = useNavigate();
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -68,6 +70,15 @@ const Login = () => {
       // });
     }
 
+    if (
+      errCheckPassword.length === 0 &&
+      errEmail.length === 0 &&
+      errPassword.length === 0
+    ) {
+      console.log("hello world");
+      return navigate("/movies");
+    }
+
     setErrorMsg({
       email: errEmail,
       password: errPassword,
@@ -101,7 +112,7 @@ const Login = () => {
   }, [errorMsg]);
 
   return (
-    <div className="Login">
+    <div className="Signup">
       <header className="header">
         <div className="image-wrapper">
           <Logo />
@@ -109,9 +120,9 @@ const Login = () => {
       </header>
 
       <main>
-        <section className="section section--login">
+        <section className="section section--signup">
           <header className="section__header">
-            <h1 className="title">Login</h1>
+            <h1 className="title">Sign Up</h1>
           </header>
 
           <div className="section__main">
@@ -141,17 +152,34 @@ const Login = () => {
                 ></input>
                 <span className="error-msg">{errorMsg.password}</span>
               </div>
+              <div className="form__element">
+                <input
+                  className="input input--password"
+                  type="password"
+                  id="checkpassword"
+                  name="password"
+                  placeholder="Repeat password"
+                  onChange={(e) =>
+                    setCredentials({
+                      ...credentials,
+                      checkPassword: e.target.value,
+                    })
+                  }
+                ></input>
+                <span className="error-msg">{errorMsg.checkPassword}</span>
+              </div>
+
               <button type="submit" className="btn btn--submit">
-                Login to your account
+                Create an account
               </button>
             </form>
           </div>
 
           <footer className="section__footer">
             <p className="text">
-              Don't have an account ?{" "}
-              <Link to={"/signup"} className="link">
-                Sign Up
+              Already have an account ?{" "}
+              <Link to={"/Login"} className="link">
+                Login
               </Link>
             </p>
           </footer>
@@ -160,5 +188,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
