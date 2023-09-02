@@ -36,7 +36,7 @@ function Series() {
 
   return (
     <div className="Series">
-      <Navbar />
+      <Navbar page={"series"}/>
       <Header />
       <main className="main">
         <section className="section section--recommendation">

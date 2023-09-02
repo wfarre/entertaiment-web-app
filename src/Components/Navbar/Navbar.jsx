@@ -9,7 +9,9 @@ import { ReactComponent as NavBookmark } from "./assets/images/icon-nav-bookmark
 import { ReactComponent as NavHome } from "./assets/images/icon-nav-home.svg";
 import avatar from "./assets/images/image-avatar.png";
 
-const Navbar = () => {
+const Navbar = ({page}) => {
+
+
   return (
     <nav className="navbar">
       <header className="navbar__header">
@@ -23,7 +25,7 @@ const Navbar = () => {
           <li className="nav__item">
             <Link
               to="/"
-              className="nav__item__link nav__item__link--navhome active"
+              className={page === "main" ? "nav__item__link nav__item__link--navhome active" : "nav__item__link nav__item__link--navhome" }
             >
               <NavHome className="icon" />
             </Link>
@@ -31,7 +33,7 @@ const Navbar = () => {
           <li className="nav__item">
             <Link
               to="/movies"
-              className="nav__item__link nav__item__link--navmovies"
+              className={page === "movies" ? "nav__item__link nav__item__link--navmovies active" : "nav__item__link nav__item__link--navmovies"}
             >
               <NavMovies className="icon" />
             </Link>
@@ -40,13 +42,13 @@ const Navbar = () => {
           <li className="nav__item">
             <Link
               to={"/series"}
-              className="nav__item__link nav__item__link--navseries"
+              className={page === "series" ? "nav__item__link nav__item__link--navseries active" :  "nav__item__link nav__item__link--navseries" }
             >
               <NavSeries className="icon" />
             </Link>
           </li>
           <li className="nav__item">
-            <Link className="nav__item__link " to={"/bookmarked"}>
+            <Link className={page === "bookmarked" ? "nav__item__link active" :"nav__item__link "  } to={"/bookmarked"}>
               <NavBookmark className="icon" />
             </Link>
           </li>

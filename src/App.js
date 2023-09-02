@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar page={"main"} />
       <Header />
 
       <main className="main">

@@ -46,9 +46,11 @@
           // fill: red;
         }
 
-        // &--full {
-        //   visibility: hidden;
-        // }
+        &--full {
+          // visibility: hidden;
+          stroke: #fff;
+          // stroke-width: 1.5px;
+        }
       }
 
       &:hover {
@@ -62,6 +64,12 @@
             transition: stroke 300ms;
 
             // fill: red;
+          }
+
+          &--full{
+            stroke: $bg-color-primary;
+            transition: stroke 300ms;
+
           }
         }
       }

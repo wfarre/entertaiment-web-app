@@ -34,7 +34,7 @@ function Movies() {
 
   return (
     <div className="Movies">
-      <Navbar />
+      <Navbar page={"movies"} />
       <Header />
       <main className="main">
         <section className="section section--recommendation">

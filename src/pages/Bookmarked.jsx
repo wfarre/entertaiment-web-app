@@ -33,7 +33,7 @@ function Bookmarked() {
 
   return (
     <div className="Bookmarked">
-      <Navbar />
+      <Navbar page={"bookmarked"}/>
       <Header />
       <main className="main">
         <section className="section section--recommendation">
