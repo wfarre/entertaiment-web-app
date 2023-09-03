@@ -7,6 +7,7 @@ import Header from "../Components/Header/Header";
 
 function Movies() {
   const [data, setData] = useState([]);
+  const [dataToDisplay, setDataToDisplay] = useState([])
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -25,6 +26,7 @@ function Movies() {
           (media) => new MediaFactory(media, "json"),
         );
         setData(medias);
+        setDataToDisplay(medias)
       })
       .catch((err) => {
         setIsLoading(false);
@@ -32,10 +34,30 @@ function Movies() {
       });
   }, []);
 
+
+  const handleSearch = (search) => {
+
+    if(search.length === 0){
+      setDataToDisplay(data)
+    }
+
+    if(search.length > 0){
+      const newData = data.filter(data => {
+        console.log(data.title.includes(search.toLowerCase()));
+        return data.title.toLowerCase().includes(search.toLowerCase())
+      }
+        
+        )
+        console.log(newData);
+      setDataToDisplay(newData)
+    }
+    
+  }
+
   return (
     <div className="Movies">
       <Navbar page={"movies"} />
-      <Header />
+      <Header handleSearch = {(search) => handleSearch(search)} />
       <main className="main">
         <section className="section section--recommendation">
           <header className="section__header">
@@ -44,7 +66,7 @@ function Movies() {
 
           <div className="section__main">
             <div className="container">
-              {data.map((media, key = 0) => {
+              {dataToDisplay.map((media, key = 0) => {
                 key++;
                 return (
                   <Card
