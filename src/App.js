@@ -5,29 +5,37 @@ import Header from "./Components/Header/Header";
 import Card from "./Components/Card/Card";
 import { useEffect, useState } from "react";
 import MediaFactory from "./factories/MediaFactory.js";
+import { useFetch } from "./utils/useFetch";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  // const [data, setData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState("");
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch("./assets/data/data.json")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setIsLoading(false);
-        // console.log(data);
-        const medias = data.map((media) => new MediaFactory(media, "json"));
-        setData(medias);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   fetch("./assets/data/data.json")
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       setIsLoading(false);
+  //       // console.log(data);
+  //       const medias = data.map((media) => new MediaFactory(media, "json"));
+  //       setData(medias);
+  //     })
+  //     .catch((err) => {
+  //       setIsLoading(false);
+  //       setError(err);
+  //     });
+  // }, []);
+
+  const { data, error, isLoading } = useFetch(
+    "./assets/data/data.json",
+    "media"
+  );
+
+  // console.log(a);
 
   useEffect(() => console.log(data), [data]);
 

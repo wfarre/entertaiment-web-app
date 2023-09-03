@@ -7,13 +7,13 @@ const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
-    checkPassword: "",
+    // checkPassword: "",
   });
 
   const [errorMsg, setErrorMsg] = useState({
     email: "",
     password: "",
-    checkPassword: "",
+    // checkPassword: "",
   });
 
   const checkIfEmailIsValid = (email) => {
@@ -21,26 +21,26 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
-    const enteredEmail = e.target.value;
-    if (checkIfEmailIsValid(enteredEmail)) {
-      console.log("goog job");
-    }
-    if (!checkIfEmailIsValid(enteredEmail)) {
-      console.log("nonononononono job");
-    }
-  };
+  // const handleChange = (e) => {
+  //   console.log(e.target.value);
+  //   const enteredEmail = e.target.value;
+  //   if (checkIfEmailIsValid(enteredEmail)) {
+  //     console.log("goog job");
+  //   }
+  //   if (!checkIfEmailIsValid(enteredEmail)) {
+  //     console.log("nonononononono job");
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const password = credentials.password;
-    const checkPassword = credentials.checkPassword;
+    // const checkPassword = credentials.checkPassword;
     const email = credentials.email;
 
     let errEmail = "";
     let errPassword = "";
-    let errCheckPassword = "";
+    // let errCheckPassword = "";
 
     if (checkIfEmailIsValid(email)) {
       setErrorMsg({ ...errorMsg, email: "" });
@@ -57,21 +57,11 @@ const Login = () => {
       // setErrorMsg({ ...errorMsg, password: "Can't be empty" });
     }
 
-    if (password !== checkPassword) {
-      errCheckPassword = "Passwords doesn't match";
-      errPassword = "Passwords doesn't match";
-
-      // setErrorMsg({
-      //   ...errorMsg,
-      //   checkPassword: "Passwords doesn't match",
-      //   password: "Passwords doesn't match",
-      // });
-    }
 
     setErrorMsg({
       email: errEmail,
       password: errPassword,
-      checkPassword: errCheckPassword,
+      // checkPassword: errCheckPassword,
     });
   };
 
@@ -79,7 +69,7 @@ const Login = () => {
     console.log(errorMsg);
     const emailInput = document.getElementById("email");
     const passwordinput = document.getElementById("password");
-    const checkPasswordInput = document.getElementById("checkpassword");
+    // const checkPasswordInput = document.getElementById("checkpassword");
 
     const formElements = document.querySelectorAll(".form__element");
 
@@ -95,9 +85,9 @@ const Login = () => {
       emailInput.closest(".form__element").classList.add("error");
     }
 
-    if (errorMsg.checkPassword.length !== 0) {
-      checkPasswordInput.closest(".form__element").classList.add("error");
-    }
+    // if (errorMsg.checkPassword.length !== 0) {
+    //   checkPasswordInput.closest(".form__element").classList.add("error");
+    // }
   }, [errorMsg]);
 
   return (

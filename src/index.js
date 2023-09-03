@@ -4,6 +4,7 @@ import {
   BrowserRouter,
   createBrowserRouter,
   Route,
+  Router,
   RouterProvider,
   Routes,
 } from "react-router-dom";
@@ -17,6 +18,7 @@ import Series from "./pages/Series";
 import Bookmarked from "./pages/Bookmarked";
 import Login from "./pages/Login";
 import { Signup } from "./pages/Signup";
+import Routing from "./Routing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,14 +28,15 @@ root.render(
     {/* <Navbar />
     <Header /> */}
     {/* <main className="main"> */}
-    <Routes>
+    {/* <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<App />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/series" element={<Series />} />
       <Route path="/bookmarked" element={<Bookmarked />} />
-    </Routes>
+    </Routes> */}
+    <Routing />
     {/* </main> */}
   </BrowserRouter>
 
