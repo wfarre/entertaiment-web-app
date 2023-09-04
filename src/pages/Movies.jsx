@@ -1,63 +1,26 @@
 import Card from "../Components/Card/Card";
 import { useEffect, useState } from "react";
-import MediaFactory from "../factories/MediaFactory";
 import Navbar from "../Components/Navbar/Navbar";
 
 import Header from "../Components/Header/Header";
+import { searchByCategory } from "../utils/searchByCategory";
+import { searchByInput } from "../utils/searchByInput";
 
-function Movies() {
-  const [data, setData] = useState([]);
-  const [dataToDisplay, setDataToDisplay] = useState([])
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+function Movies({ data }) {
+  const [dataToDisplay, setDataToDisplay] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch("./assets/data/data.json")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setIsLoading(false);
-        const filteredData = data.filter((data) => data.category === "Movie");
-        // console.log(filteredData);
-
-        const medias = filteredData.map(
-          (media) => new MediaFactory(media, "json"),
-        );
-        setData(medias);
-        setDataToDisplay(medias)
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err);
-      });
-  }, []);
-
+    setDataToDisplay(searchByCategory(data, "Movie"));
+  }, [data]);
 
   const handleSearch = (search) => {
-
-    if(search.length === 0){
-      setDataToDisplay(data)
-    }
-
-    if(search.length > 0){
-      const newData = data.filter(data => {
-        console.log(data.title.includes(search.toLowerCase()));
-        return data.title.toLowerCase().includes(search.toLowerCase())
-      }
-        
-        )
-        console.log(newData);
-      setDataToDisplay(newData)
-    }
-    
-  }
+    setDataToDisplay(searchByInput(data, search));
+  };
 
   return (
     <div className="Movies">
       <Navbar page={"movies"} />
-      <Header handleSearch = {(search) => handleSearch(search)} />
+      <Header handleSearch={(search) => handleSearch(search)} />
       <main className="main">
         <section className="section section--recommendation">
           <header className="section__header">

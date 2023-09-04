@@ -1,43 +1,26 @@
 import Card from "../Components/Card/Card";
 import { useState, useEffect } from "react";
-import MediaFactory from "../factories/MediaFactory";
 import Navbar from "../Components/Navbar/Navbar";
 
 import Header from "../Components/Header/Header";
+import { searchByCategory } from "../utils/searchByCategory";
+import { searchByInput } from "../utils/searchByInput";
 
-function Series() {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+function Series({ data }) {
+  const [dataToDisplay, setDataToDisplay] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch("./assets/data/data.json")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setIsLoading(false);
-        const filteredData = data.filter(
-          (data) => data.category === "TV Series",
-        );
-        console.log(filteredData);
+    setDataToDisplay(searchByCategory(data, "TV Series"));
+  }, [data]);
 
-        const medias = filteredData.map(
-          (media) => new MediaFactory(media, "json"),
-        );
-        setData(medias);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err);
-      });
-  }, []);
+  const handleSearch = (search) => {
+    setDataToDisplay(searchByInput(data, search));
+  };
 
   return (
     <div className="Series">
-      <Navbar page={"series"}/>
-      <Header />
+      <Navbar page={"series"} />
+      <Header handleSearch={handleSearch} />
       <main className="main">
         <section className="section section--recommendation">
           <header className="section__header">
@@ -46,7 +29,7 @@ function Series() {
 
           <div className="section__main">
             <div className="container">
-              {data.map((media, key = 0) => {
+              {dataToDisplay.map((media, key = 0) => {
                 key++;
                 return (
                   <Card

@@ -7,13 +7,11 @@ const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
-    // checkPassword: "",
   });
 
   const [errorMsg, setErrorMsg] = useState({
     email: "",
     password: "",
-    // checkPassword: "",
   });
 
   const checkIfEmailIsValid = (email) => {
@@ -21,26 +19,13 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
-  // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  //   const enteredEmail = e.target.value;
-  //   if (checkIfEmailIsValid(enteredEmail)) {
-  //     console.log("goog job");
-  //   }
-  //   if (!checkIfEmailIsValid(enteredEmail)) {
-  //     console.log("nonononononono job");
-  //   }
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const password = credentials.password;
-    // const checkPassword = credentials.checkPassword;
     const email = credentials.email;
 
     let errEmail = "";
     let errPassword = "";
-    // let errCheckPassword = "";
 
     if (checkIfEmailIsValid(email)) {
       setErrorMsg({ ...errorMsg, email: "" });
@@ -48,29 +33,22 @@ const Login = () => {
     }
     if (!checkIfEmailIsValid(email)) {
       errEmail = "Enter a correct email";
-      // setErrorMsg({ ...errorMsg, email: "Enter a correct email" });
       console.log(credentials);
     }
 
     if (password.length === 0) {
       errPassword = "Can't be empty";
-      // setErrorMsg({ ...errorMsg, password: "Can't be empty" });
     }
-
 
     setErrorMsg({
       email: errEmail,
       password: errPassword,
-      // checkPassword: errCheckPassword,
     });
   };
 
   useEffect(() => {
-    console.log(errorMsg);
     const emailInput = document.getElementById("email");
     const passwordinput = document.getElementById("password");
-    // const checkPasswordInput = document.getElementById("checkpassword");
-
     const formElements = document.querySelectorAll(".form__element");
 
     formElements.forEach((el) => {
@@ -84,10 +62,6 @@ const Login = () => {
     if (errorMsg.email.length !== 0) {
       emailInput.closest(".form__element").classList.add("error");
     }
-
-    // if (errorMsg.checkPassword.length !== 0) {
-    //   checkPasswordInput.closest(".form__element").classList.add("error");
-    // }
   }, [errorMsg]);
 
   return (

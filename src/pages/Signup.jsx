@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ReactComponent as Logo } from "../assets/images/logo.svg";
-import { Link, Navigate, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.scss";
 
 export const Signup = () => {
@@ -23,16 +23,16 @@ export const Signup = () => {
     return emailRegex.test(email);
   };
 
-  const handleChange = (e) => {
-    console.log(e.target.value);
-    const enteredEmail = e.target.value;
-    if (checkIfEmailIsValid(enteredEmail)) {
-      console.log("goog job");
-    }
-    if (!checkIfEmailIsValid(enteredEmail)) {
-      console.log("nonononononono job");
-    }
-  };
+  // const handleChange = (e) => {
+  //   console.log(e.target.value);
+  //   const enteredEmail = e.target.value;
+  //   if (checkIfEmailIsValid(enteredEmail)) {
+  //     console.log("goog job");
+  //   }
+  //   if (!checkIfEmailIsValid(enteredEmail)) {
+  //     console.log("nonononononono job");
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,24 +50,16 @@ export const Signup = () => {
     }
     if (!checkIfEmailIsValid(email)) {
       errEmail = "Enter a correct email";
-      // setErrorMsg({ ...errorMsg, email: "Enter a correct email" });
       console.log(credentials);
     }
 
     if (password.length === 0) {
       errPassword = "Can't be empty";
-      // setErrorMsg({ ...errorMsg, password: "Can't be empty" });
     }
 
     if (password !== checkPassword) {
       errCheckPassword = "Passwords doesn't match";
       errPassword = "Passwords doesn't match";
-
-      // setErrorMsg({
-      //   ...errorMsg,
-      //   checkPassword: "Passwords doesn't match",
-      //   password: "Passwords doesn't match",
-      // });
     }
 
     if (

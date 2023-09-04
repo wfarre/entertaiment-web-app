@@ -1,23 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  Router,
-  RouterProvider,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Navbar from "./Components/Navbar/Navbar";
-import Header from "./Components/Header/Header";
-import Movies from "./pages/Movies";
-import Series from "./pages/Series";
-import Bookmarked from "./pages/Bookmarked";
-import Login from "./pages/Login";
-import { Signup } from "./pages/Signup";
 import Routing from "./Routing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -25,19 +10,7 @@ root.render(
   // <React.StrictMode>
 
   <BrowserRouter>
-    {/* <Navbar />
-    <Header /> */}
-    {/* <main className="main"> */}
-    {/* <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/" element={<App />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/series" element={<Series />} />
-      <Route path="/bookmarked" element={<Bookmarked />} />
-    </Routes> */}
     <Routing />
-    {/* </main> */}
   </BrowserRouter>
 
   // {/* </React.StrictMode> */}
