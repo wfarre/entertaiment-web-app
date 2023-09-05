@@ -3,19 +3,25 @@ import Navbar from "./Components/Navbar/Navbar";
 
 import Header from "./Components/Header/Header";
 import Card from "./Components/Card/Card";
+import { useEffect, useState } from "react";
+import { searchByInput } from "./utils/searchByInput";
+import Container from "./Components/Container/Container";
 
 function App({ data }) {
-  // const { data, error, isLoading } = useFetch(
-  //   "./assets/data/data.json",
-  //   "media"
-  // );
+  const [dataToDisplay, setDataToDisplay] = useState([]);
 
-  // useEffect(() => console.log(data), [data]);
+  useEffect(() => {
+    setDataToDisplay(data);
+  }, [data]);
+
+  const handleSearch = (search) => {
+    setDataToDisplay(searchByInput(data, search));
+  };
 
   return (
     <div className="App">
       <Navbar page={"main"} />
-      <Header />
+      <Header handleSearch={(search) => handleSearch(search)} />
 
       <main className="main">
         <section className="section section--trending" id="trending">
@@ -24,9 +30,9 @@ function App({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
+            <div className="container container--vertical">
               <div className="viewport">
-                {data.map((media, key = 0) => {
+                {dataToDisplay.map((media, key = 0) => {
                   if (media.isTrending) {
                     key++;
                     return (
@@ -59,20 +65,7 @@ function App({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
-              {data.map((media) => {
-                return (
-                  <Card
-                    title={media.title}
-                    category={media.category}
-                    year={media.year}
-                    rating={media.rating}
-                    isBookmarked={media.isBookmarked}
-                    thumbnailRegular={media.thumbnailRegular}
-                  />
-                );
-              })}
-            </div>
+            <Container data={dataToDisplay} />
           </div>
 
           <footer className="section__footer"></footer>

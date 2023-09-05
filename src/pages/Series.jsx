@@ -1,20 +1,37 @@
-import Card from "../Components/Card/Card";
 import { useState, useEffect } from "react";
-import Navbar from "../Components/Navbar/Navbar";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import Navbar from "../Components/Navbar/Navbar";
 import Header from "../Components/Header/Header";
+import Container from "../Components/Container/Container";
+
 import { searchByCategory } from "../utils/searchByCategory";
 import { searchByInput } from "../utils/searchByInput";
 
 function Series({ data }) {
+  const [seriesData, setSeriesData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
 
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    setDataToDisplay(searchByCategory(data, "TV Series"));
+    if (loggedIn === false) {
+      navigate("/login");
+    }
+  }, []);
+
+  useEffect(() => {
+    setSeriesData(searchByCategory(data, "TV Series"));
   }, [data]);
 
+  useEffect(() => {
+    setDataToDisplay(seriesData);
+  }, [seriesData]);
+
   const handleSearch = (search) => {
-    setDataToDisplay(searchByInput(data, search));
+    setDataToDisplay(searchByInput(seriesData, search));
   };
 
   return (
@@ -28,22 +45,7 @@ function Series({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
-              {dataToDisplay.map((media, key = 0) => {
-                key++;
-                return (
-                  <Card
-                    key={media.title + key}
-                    title={media.title}
-                    category={media.category}
-                    year={media.year}
-                    rating={media.rating}
-                    isBookmarked={media.isBookmarked}
-                    thumbnailRegular={media.thumbnailRegular}
-                  />
-                );
-              })}
-            </div>
+            <Container data={dataToDisplay} />
           </div>
 
           <footer className="section__footer"></footer>

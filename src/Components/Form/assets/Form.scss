@@ -1,0 +1,64 @@
+@use "../../../App.scss" as *;
+
+.form {
+  &__element {
+    position: relative;
+
+    .error-msg {
+      color: $color-error;
+      @include body-S();
+      position: absolute;
+      top: 50%;
+      right: 17px;
+      transform: translateY(calc(-50% - 17px));
+      // visibility: hidden;
+    }
+    .input {
+      position: relative;
+      width: calc(100% - 16px);
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid $txt-color-secondary;
+      padding-bottom: 17px;
+      padding-left: 16px;
+      @include body-M();
+      margin-bottom: 24px;
+      caret-color: $color-primary;
+      color: #fff;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:last-child {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  .error {
+    .input {
+      position: relative;
+      // background-color: aqua;
+      border-bottom-color: $color-error;
+    }
+  }
+
+  .btn--submit {
+    width: 100%;
+    background-color: $color-primary;
+    color: #fff;
+    @include body-M();
+    height: 48px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      cursor: pointer;
+      transition: all 300ms;
+      background-color: #fff;
+      color: $bg-color-secondary;
+    }
+  }
+}

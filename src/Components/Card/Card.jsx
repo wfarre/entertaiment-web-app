@@ -6,8 +6,6 @@ import { ReactComponent as BookmarkFull } from "./assets/images/icon-bookmark-fu
 
 import { ReactComponent as PlayButton } from "./assets/images/icon-play.svg";
 
-// import image from "../../assets/images/thumbnails/1998/trending/large.jpg";
-
 const Card = ({
   title,
   year,
@@ -17,7 +15,6 @@ const Card = ({
   rating,
   category,
 }) => {
-  console.log(thumbnailRegular);
   return (
     <div className="card">
       <div className="card__header">

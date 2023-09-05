@@ -1,14 +1,8 @@
-// import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "./slices/authSlice";
 
-
-// const mediaSlice = createSlice({
-//     name: 'media',
-//     initialState: {
-//         value: []
-//     },
-//     reducers: {
-//         isBookmarked: state => {
-//             state.value = !
-//         }
-//     }
-// })
+export default configureStore({
+  reducer: {
+    auth: authReducer,
+  },
+});
