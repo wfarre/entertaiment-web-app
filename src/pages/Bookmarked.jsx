@@ -6,14 +6,19 @@ import { searchIfIsBookmarked } from "../utils/searchByCategory";
 import { searchByInput } from "../utils/searchByInput";
 
 function Bookmarked({ data }) {
+  const [bookmarkedData, setBookmarkedData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
 
   useEffect(() => {
-    setDataToDisplay(searchIfIsBookmarked(data));
+    setBookmarkedData(searchIfIsBookmarked(data));
   }, [data]);
 
+  useEffect(() => {
+    setDataToDisplay(bookmarkedData);
+  }, [bookmarkedData]);
+
   const handleSearch = (search) => {
-    setDataToDisplay(searchByInput(data, search));
+    setDataToDisplay(searchByInput(bookmarkedData, search));
   };
 
   return (

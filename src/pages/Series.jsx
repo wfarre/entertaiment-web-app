@@ -7,14 +7,19 @@ import { searchByCategory } from "../utils/searchByCategory";
 import { searchByInput } from "../utils/searchByInput";
 
 function Series({ data }) {
+  const [seriesData, setSeriesData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
 
   useEffect(() => {
-    setDataToDisplay(searchByCategory(data, "TV Series"));
+    setSeriesData(searchByCategory(data, "TV Series"));
   }, [data]);
 
+  useEffect(() => {
+    setDataToDisplay(seriesData);
+  }, [seriesData]);
+
   const handleSearch = (search) => {
-    setDataToDisplay(searchByInput(data, search));
+    setDataToDisplay(searchByInput(seriesData, search));
   };
 
   return (

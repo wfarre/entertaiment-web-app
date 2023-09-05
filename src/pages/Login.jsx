@@ -2,67 +2,22 @@ import React, { useState, useEffect } from "react";
 import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import "../App.scss";
+import { useNavigate } from "react-router-dom";
+import { Form } from "../Components/Form/Form";
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
+  const navigate = useNavigate();
+  const [error, setError] = useState(true);
 
-  const [errorMsg, setErrorMsg] = useState({
-    email: "",
-    password: "",
-  });
-
-  const checkIfEmailIsValid = (email) => {
-    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return emailRegex.test(email);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const password = credentials.password;
-    const email = credentials.email;
-
-    let errEmail = "";
-    let errPassword = "";
-
-    if (checkIfEmailIsValid(email)) {
-      setErrorMsg({ ...errorMsg, email: "" });
-      console.log(credentials);
-    }
-    if (!checkIfEmailIsValid(email)) {
-      errEmail = "Enter a correct email";
-      console.log(credentials);
-    }
-
-    if (password.length === 0) {
-      errPassword = "Can't be empty";
-    }
-
-    setErrorMsg({
-      email: errEmail,
-      password: errPassword,
-    });
+  const handleSubmit = (error) => {
+    setError(error);
   };
 
   useEffect(() => {
-    const emailInput = document.getElementById("email");
-    const passwordinput = document.getElementById("password");
-    const formElements = document.querySelectorAll(".form__element");
-
-    formElements.forEach((el) => {
-      el.classList.remove("error");
-    });
-
-    if (errorMsg.password.length !== 0) {
-      passwordinput.closest(".form__element").classList.add("error");
+    if (!error) {
+      navigate("/");
     }
-
-    if (errorMsg.email.length !== 0) {
-      emailInput.closest(".form__element").classList.add("error");
-    }
-  }, [errorMsg]);
+  }, [error]);
 
   return (
     <div className="Login">
@@ -79,36 +34,7 @@ const Login = () => {
           </header>
 
           <div className="section__main">
-            <form className="form form--login" onSubmit={handleSubmit}>
-              <div className="form__element">
-                <input
-                  className="input input--email"
-                  id="email"
-                  name="password"
-                  placeholder="Email address"
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, email: e.target.value })
-                  }
-                ></input>
-                <span className="error-msg">{errorMsg.email}</span>
-              </div>
-              <div className="form__element">
-                <input
-                  className="input input--password"
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={(e) =>
-                    setCredentials({ ...credentials, password: e.target.value })
-                  }
-                ></input>
-                <span className="error-msg">{errorMsg.password}</span>
-              </div>
-              <button type="submit" className="btn btn--submit">
-                Login to your account
-              </button>
-            </form>
+            <Form checkSubmit={handleSubmit} formType={"login"} />
           </div>
 
           <footer className="section__footer">

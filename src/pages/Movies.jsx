@@ -7,14 +7,19 @@ import { searchByCategory } from "../utils/searchByCategory";
 import { searchByInput } from "../utils/searchByInput";
 
 function Movies({ data }) {
+  const [moviesData, setMoviesData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
 
   useEffect(() => {
-    setDataToDisplay(searchByCategory(data, "Movie"));
+    setMoviesData(searchByCategory(data, "Movie"));
   }, [data]);
 
+  useEffect(() => {
+    setDataToDisplay(moviesData);
+  }, [moviesData]);
+
   const handleSearch = (search) => {
-    setDataToDisplay(searchByInput(data, search));
+    setDataToDisplay(searchByInput(moviesData, search));
   };
 
   return (
