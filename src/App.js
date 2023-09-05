@@ -1,14 +1,25 @@
 import "./App.scss";
-import Navbar from "./Components/Navbar/Navbar";
-
-import Header from "./Components/Header/Header";
-import Card from "./Components/Card/Card";
 import { useEffect, useState } from "react";
 import { searchByInput } from "./utils/searchByInput";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import Navbar from "./Components/Navbar/Navbar";
+import Header from "./Components/Header/Header";
+import Card from "./Components/Card/Card";
 import Container from "./Components/Container/Container";
 
 function App({ data }) {
   const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  const navigate = useNavigate();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+
+  useEffect(() => {
+    if (loggedIn === false) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     setDataToDisplay(data);
