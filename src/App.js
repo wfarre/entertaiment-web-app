@@ -3,19 +3,24 @@ import Navbar from "./Components/Navbar/Navbar";
 
 import Header from "./Components/Header/Header";
 import Card from "./Components/Card/Card";
+import { useEffect, useState } from "react";
+import { searchByInput } from "./utils/searchByInput";
 
 function App({ data }) {
-  // const { data, error, isLoading } = useFetch(
-  //   "./assets/data/data.json",
-  //   "media"
-  // );
+  const [dataToDisplay, setDataToDisplay] = useState([]);
 
-  // useEffect(() => console.log(data), [data]);
+  useEffect(() => {
+    setDataToDisplay(data);
+  }, [data]);
+
+  const handleSearch = (search) => {
+    setDataToDisplay(searchByInput(data, search));
+  };
 
   return (
     <div className="App">
       <Navbar page={"main"} />
-      <Header />
+      <Header handleSearch={(search) => handleSearch(search)} />
 
       <main className="main">
         <section className="section section--trending" id="trending">
@@ -26,7 +31,7 @@ function App({ data }) {
           <div className="section__main">
             <div className="container">
               <div className="viewport">
-                {data.map((media, key = 0) => {
+                {dataToDisplay.map((media, key = 0) => {
                   if (media.isTrending) {
                     key++;
                     return (
@@ -60,7 +65,7 @@ function App({ data }) {
 
           <div className="section__main">
             <div className="container">
-              {data.map((media) => {
+              {dataToDisplay.map((media) => {
                 return (
                   <Card
                     title={media.title}
