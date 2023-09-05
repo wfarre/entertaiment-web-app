@@ -1,6 +1,7 @@
 @use "../../../App.scss" as *;
 
 .card {
+  opacity: 0;
   position: relative;
   width: 470px;
   height: 230px;
@@ -66,10 +67,9 @@
             // fill: red;
           }
 
-          &--full{
+          &--full {
             stroke: $bg-color-primary;
             transition: stroke 300ms;
-
           }
         }
       }
@@ -185,5 +185,23 @@
         font-size: 15px;
       }
     }
+  }
+}
+.card {
+  animation: appear 800ms forwards;
+}
+
+@for $i from 1 through 100 {
+  .card:nth-child(#{$i}) {
+    animation-delay: $i * 200ms;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
