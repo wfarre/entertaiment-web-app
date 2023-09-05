@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../Card/Card";
-import "../../App.scss";
 import "./assets/Container.scss";
 
 const Container = ({ data }) => {

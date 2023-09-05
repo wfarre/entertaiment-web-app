@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "../App.scss";
-import { Form } from "../Components/Form/Form";
 
-import { useDispatch, useSelector } from "react-redux";
+import { Form } from "../Components/Form/Form";
+import { ReactComponent as Logo } from "../assets/images/logo.svg";
+
 import { login } from "../slices/authSlice";
 
 export const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loggedIn = useSelector((state) => state.loggedIn);
   const [error, setError] = useState(true);
   const [credentials, setCredentials] = useState({
     userEmail: "",
@@ -18,7 +18,6 @@ export const Signup = () => {
   });
 
   const handleSubmit = (error, email, password) => {
-    console.log("hello");
     setError(error);
     setCredentials({
       userEmail: email,

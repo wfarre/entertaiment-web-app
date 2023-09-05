@@ -1,19 +1,20 @@
-import Card from "../Components/Card/Card";
 import { useState, useEffect } from "react";
-import Navbar from "../Components/Navbar/Navbar";
-
-import Header from "../Components/Header/Header";
-import { searchByCategory } from "../utils/searchByCategory";
-import { searchByInput } from "../utils/searchByInput";
-import Container from "../Components/Container/Container";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import Navbar from "../Components/Navbar/Navbar";
+import Header from "../Components/Header/Header";
+import Container from "../Components/Container/Container";
+
+import { searchByCategory } from "../utils/searchByCategory";
+import { searchByInput } from "../utils/searchByInput";
+
 function Series({ data }) {
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const navigate = useNavigate();
   const [seriesData, setSeriesData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (loggedIn === false) {

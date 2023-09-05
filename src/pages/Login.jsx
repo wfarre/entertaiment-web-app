@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { ReactComponent as Logo } from "../assets/images/logo.svg";
-import { Link } from "react-router-dom";
-import "../App.scss";
-import { useNavigate } from "react-router-dom";
-import { Form } from "../Components/Form/Form";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import "../App.scss";
+
+import { Form } from "../Components/Form/Form";
 import { login } from "../slices/authSlice";
+
+import { ReactComponent as Logo } from "../assets/images/logo.svg";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loggedIn = useSelector((state) => state.loggedIn);
   const [error, setError] = useState(true);
 
   const handleSubmit = (error) => {

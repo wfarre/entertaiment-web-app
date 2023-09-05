@@ -1,6 +1,8 @@
 import React from "react";
-import "./assets/Navbar.scss";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import "./assets/Navbar.scss";
 
 import { ReactComponent as Logo } from "./assets/images/logo.svg";
 import { ReactComponent as NavMovies } from "./assets/images/icon-nav-movies.svg";
@@ -8,7 +10,7 @@ import { ReactComponent as NavSeries } from "./assets/images/icon-nav-tv-series.
 import { ReactComponent as NavBookmark } from "./assets/images/icon-nav-bookmark.svg";
 import { ReactComponent as NavHome } from "./assets/images/icon-nav-home.svg";
 import avatar from "./assets/images/image-avatar.png";
-import { useDispatch } from "react-redux";
+
 import { logout } from "../../slices/authSlice";
 
 const Navbar = ({ page }) => {

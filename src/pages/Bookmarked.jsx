@@ -1,4 +1,3 @@
-import Card from "../Components/Card/Card";
 import Navbar from "../Components/Navbar/Navbar";
 import Header from "../Components/Header/Header";
 import { useState, useEffect } from "react";

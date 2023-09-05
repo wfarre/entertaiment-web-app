@@ -1,19 +1,20 @@
-import Card from "../Components/Card/Card";
 import { useEffect, useState } from "react";
-import Navbar from "../Components/Navbar/Navbar";
-
-import Header from "../Components/Header/Header";
-import { searchByCategory } from "../utils/searchByCategory";
-import { searchByInput } from "../utils/searchByInput";
-import Container from "../Components/Container/Container";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import Header from "../Components/Header/Header";
+import Container from "../Components/Container/Container";
+import Navbar from "../Components/Navbar/Navbar";
+
+import { searchByCategory } from "../utils/searchByCategory";
+import { searchByInput } from "../utils/searchByInput";
+
 function Movies({ data }) {
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const navigate = useNavigate();
   const [moviesData, setMoviesData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  const navigate = useNavigate();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
 
   useEffect(() => {
     if (loggedIn === false) {
