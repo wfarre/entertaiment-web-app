@@ -4,8 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import "../App.scss";
 import { Form } from "../Components/Form/Form";
 
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../slices/authSlice";
+
 export const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.loggedIn);
   const [error, setError] = useState(true);
   const [credentials, setCredentials] = useState({
     userEmail: "",
@@ -32,6 +37,7 @@ export const Signup = () => {
         "profile" + credentials.userEmail,
         JSON.stringify(newProfile)
       );
+      dispatch(login());
       navigate("/");
     }
   }, [error]);

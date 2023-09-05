@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { checkIfEmailIsValid } from "../../utils/emailValidation";
+import "./assets/Form.scss";
 
 export const Form = ({ checkSubmit, formType }) => {
   const [credentials, setCredentials] = useState({
@@ -132,7 +133,7 @@ export const Form = ({ checkSubmit, formType }) => {
       )}
 
       <button type="submit" className="btn btn--submit">
-        Create an account
+        {formType === "login" ? "Login to your account" : "Create an account"}
       </button>
     </form>
   );

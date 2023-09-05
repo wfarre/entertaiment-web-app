@@ -5,6 +5,7 @@ import Header from "./Components/Header/Header";
 import Card from "./Components/Card/Card";
 import { useEffect, useState } from "react";
 import { searchByInput } from "./utils/searchByInput";
+import Container from "./Components/Container/Container";
 
 function App({ data }) {
   const [dataToDisplay, setDataToDisplay] = useState([]);
@@ -29,7 +30,7 @@ function App({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
+            <div className="container container--vertical">
               <div className="viewport">
                 {dataToDisplay.map((media, key = 0) => {
                   if (media.isTrending) {
@@ -64,20 +65,7 @@ function App({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
-              {dataToDisplay.map((media) => {
-                return (
-                  <Card
-                    title={media.title}
-                    category={media.category}
-                    year={media.year}
-                    rating={media.rating}
-                    isBookmarked={media.isBookmarked}
-                    thumbnailRegular={media.thumbnailRegular}
-                  />
-                );
-              })}
-            </div>
+            <Container data={dataToDisplay} />
           </div>
 
           <footer className="section__footer"></footer>

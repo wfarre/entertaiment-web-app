@@ -4,10 +4,21 @@ import Header from "../Components/Header/Header";
 import { useState, useEffect } from "react";
 import { searchIfIsBookmarked } from "../utils/searchByCategory";
 import { searchByInput } from "../utils/searchByInput";
+import Container from "../Components/Container/Container";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Bookmarked({ data }) {
+  const navigate = useNavigate();
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
   const [bookmarkedData, setBookmarkedData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  useEffect(() => {
+    if (loggedIn === false) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     setBookmarkedData(searchIfIsBookmarked(data));
@@ -32,22 +43,7 @@ function Bookmarked({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
-              {dataToDisplay.map((media, key = 0) => {
-                key++;
-                return (
-                  <Card
-                    key={media.title + key}
-                    title={media.title}
-                    category={media.category}
-                    year={media.year}
-                    rating={media.rating}
-                    isBookmarked={media.isBookmarked}
-                    thumbnailRegular={media.thumbnailRegular}
-                  />
-                );
-              })}
-            </div>
+            <Container data={dataToDisplay} />
           </div>
 
           <footer className="section__footer"></footer>

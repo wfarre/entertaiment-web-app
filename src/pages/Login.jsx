@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import "../App.scss";
 import { useNavigate } from "react-router-dom";
 import { Form } from "../Components/Form/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../slices/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.loggedIn);
   const [error, setError] = useState(true);
 
   const handleSubmit = (error) => {
@@ -15,6 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (!error) {
+      dispatch(login());
       navigate("/");
     }
   }, [error]);

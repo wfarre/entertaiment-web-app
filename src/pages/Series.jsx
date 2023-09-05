@@ -5,10 +5,21 @@ import Navbar from "../Components/Navbar/Navbar";
 import Header from "../Components/Header/Header";
 import { searchByCategory } from "../utils/searchByCategory";
 import { searchByInput } from "../utils/searchByInput";
+import Container from "../Components/Container/Container";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Series({ data }) {
+  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const navigate = useNavigate();
   const [seriesData, setSeriesData] = useState([]);
   const [dataToDisplay, setDataToDisplay] = useState([]);
+
+  useEffect(() => {
+    if (loggedIn === false) {
+      navigate("/login");
+    }
+  }, []);
 
   useEffect(() => {
     setSeriesData(searchByCategory(data, "TV Series"));
@@ -33,22 +44,7 @@ function Series({ data }) {
           </header>
 
           <div className="section__main">
-            <div className="container">
-              {dataToDisplay.map((media, key = 0) => {
-                key++;
-                return (
-                  <Card
-                    key={media.title + key}
-                    title={media.title}
-                    category={media.category}
-                    year={media.year}
-                    rating={media.rating}
-                    isBookmarked={media.isBookmarked}
-                    thumbnailRegular={media.thumbnailRegular}
-                  />
-                );
-              })}
-            </div>
+            <Container data={dataToDisplay} />
           </div>
 
           <footer className="section__footer"></footer>
